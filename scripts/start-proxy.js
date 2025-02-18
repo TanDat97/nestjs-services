@@ -24,10 +24,10 @@ const start = () => {
     });
 
     app.listen(proxyPort, () => {
-      console.log(`✅ Proxy running at http://localhost:${proxyPort}`);
+      console.log(`✅ API Gateway running at http://localhost:${proxyPort}`);
     });
   } catch (error) {
-    console.error('❌ Error loading proxy config:', JSON.stringify(error));
+    console.error('❌ Error loading API Gateway config:', JSON.stringify(error));
   }
 };
 
