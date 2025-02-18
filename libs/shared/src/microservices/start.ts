@@ -7,13 +7,13 @@ export const bootstrap = async (AppModule: any, grpc: any = null) => {
   const app = await NestFactory.create(AppModule, { cors: true });
   const serviceName = process.env.SERVICE_NAME || __dirname?.split('/').pop();
 
-  if (grpc) {
+  if (grpc && grpc.options?.url && grpc.options?.port) {
     await app.connectMicroservice(grpc);
     try {
       await app.startAllMicroservices();
-      Logger.log(`gRPC ${AppModule.name} Microservice started successfully on: ${grpc.options?.url}`);
+      Logger.log(`gRPC ${AppModule.name} microservice started successfully on: ${grpc.options?.url}`);
     } catch (error) {
-      Logger.error(`Failed to start gRPC ${AppModule.name} Microservice: ${JSON.stringify(error)}`);
+      Logger.error(`Failed to start gRPC ${AppModule.name} microservice: ${JSON.stringify(error)}`);
     }
   }
 
@@ -26,5 +26,5 @@ export const bootstrap = async (AppModule: any, grpc: any = null) => {
 
   await app.listen(process.env.PORT || 3000);
 
-  Logger.log(`HTTP ${AppModule.name} started on: ${await app.getUrl()}`);
+  Logger.log(`HTTP server ${AppModule.name} started on: ${await app.getUrl()}`);
 };

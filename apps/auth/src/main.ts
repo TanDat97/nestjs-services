@@ -7,6 +7,7 @@ import { join } from 'path';
 const grpc = {
   transport: Transport.GRPC,
   options: {
+    port: process.env.GRPC_PORT,
     url: `0.0.0.0:${process.env.GRPC_PORT}`,
     package: protobufPackage,
     protoPath: join('node_modules/grpc-nestjs-proto/proto/auth.proto'),
