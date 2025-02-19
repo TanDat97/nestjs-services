@@ -27,7 +27,7 @@ const start = () => {
       console.log(`✅ API Gateway running at http://localhost:${proxyPort}`);
     });
   } catch (error) {
-    console.error('❌ Error loading API Gateway config:', JSON.stringify(error));
+    console.error(`❌ Error loading API Gateway config: ${JSON.stringify(error)}`);
   }
 };
 
