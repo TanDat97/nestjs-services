@@ -20,7 +20,7 @@ export const bootstrap = async (AppModule: any, grpc: any = null) => {
   app.use(json({ limit: '20mb' }));
   app.use(urlencoded({ limit: '20mb' }));
 
-  if (config.environment !== 'development') {
+  if (config.environment !== 'local') {
     app.setGlobalPrefix(`/api/${serviceName}`);
   }
 
