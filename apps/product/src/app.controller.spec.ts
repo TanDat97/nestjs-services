@@ -15,8 +15,8 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Product Service Pong!"', () => {
-      expect(appController.getHello()).toBe('Product Service Pong!');
+    it('should return "Service Product Pong!"', () => {
+      expect(appController.getHello()).toBe(`Service ${process.env.SERVICE_NAME} Pong!`);
     });
   });
 });

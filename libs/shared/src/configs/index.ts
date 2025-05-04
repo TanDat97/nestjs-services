@@ -2,8 +2,9 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../../../.env') });
 
 export const config = {
+  serviceName: process.env.SERVICE_NAME || __dirname?.split('/').pop() || 'app',
   namespace: process.env.NAMESPACE,
-  environment: process.env.NODE_ENV || 'development',
+  environment: process.env.NODE_ENV || 'dev',
   apiUrl: process.env.API_URL || 'https://huttons-api-gateway-dev.azure-api.net',
   hmsUrl: process.env.HMS_URL || 'https://huttons-hms-dev.redoc.co',
   portalUrl: process.env.PORTAL_URL || 'https://huttons-portal-dev.redoc.co',

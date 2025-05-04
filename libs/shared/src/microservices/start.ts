@@ -1,19 +1,19 @@
-import { ConsoleLogger, Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { config } from '../configs';
 import { json, urlencoded } from 'express';
+import { LoggerService } from '../logger/logger.service';
 
 export const bootstrap = async (AppModule: any, grpc: any = null) => {
-  const serviceName = process.env.SERVICE_NAME || __dirname?.split('/').pop();
-  const app = await NestFactory.create(AppModule, { cors: true, logger: new ConsoleLogger({ prefix: serviceName }) });
+  const logger = new LoggerService();
+  const app = await NestFactory.create(AppModule, { cors: true, logger: logger });
 
   if (grpc && grpc.options?.url && grpc.options?.port) {
     await app.connectMicroservice(grpc);
     try {
       await app.startAllMicroservices();
-      Logger.log(`gRPC ${AppModule.name} microservice started successfully on: ${grpc.options?.url}`);
+      logger.log(`gRPC ${AppModule.name} microservice started successfully on: ${grpc.options?.url}`, bootstrap.name);
     } catch (error) {
-      Logger.error(`Failed to start gRPC ${AppModule.name} microservice: ${JSON.stringify(error)}`);
+      logger.error(`Failed to start gRPC ${AppModule.name} microservice: ${JSON.stringify(error)}`, error, bootstrap.name);
     }
   }
 
@@ -21,10 +21,10 @@ export const bootstrap = async (AppModule: any, grpc: any = null) => {
   app.use(urlencoded({ limit: '20mb' }));
 
   if (config.environment !== 'local') {
-    app.setGlobalPrefix(`/api/${serviceName}`);
+    app.setGlobalPrefix(`/api/${config.serviceName}`);
   }
 
   await app.listen(process.env.PORT || 3000);
 
-  Logger.log(`HTTP server ${AppModule.name} started on: ${await app.getUrl()}`);
+  logger.log(`HTTP server ${AppModule.name} started on: ${await app.getUrl()}`, bootstrap.name);
 };
