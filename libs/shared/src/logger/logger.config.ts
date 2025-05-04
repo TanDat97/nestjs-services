@@ -3,7 +3,7 @@ import { config } from '../configs';
 import { resolve } from 'path';
 
 // Default log directory
-const LOG_DIR = process.env.LOG_DIR || 'logs';
+const LOG_DIR = config.logDir;
 
 // Environment-specific log configurations
 export const loggerConfig = {
