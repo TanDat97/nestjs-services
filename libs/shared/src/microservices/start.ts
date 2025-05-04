@@ -1,11 +1,11 @@
-import { Logger } from '@nestjs/common';
+import { ConsoleLogger, Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { config } from '../configs';
 import { json, urlencoded } from 'express';
 
 export const bootstrap = async (AppModule: any, grpc: any = null) => {
-  const app = await NestFactory.create(AppModule, { cors: true });
   const serviceName = process.env.SERVICE_NAME || __dirname?.split('/').pop();
+  const app = await NestFactory.create(AppModule, { cors: true, logger: new ConsoleLogger({ prefix: serviceName }) });
 
   if (grpc && grpc.options?.url && grpc.options?.port) {
     await app.connectMicroservice(grpc);
