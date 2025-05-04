@@ -125,9 +125,6 @@ export class LoggerService extends ConsoleLogger {
 
     // Auto-detect the context by examining the call stack
     const detectedContext = detectContext();
-    console.log(`Detected context: ${detectedContext}`);
-
-    // Update the context in the parent class
     if (!this.contextSet) {
       super.setContext(detectedContext);
     }
