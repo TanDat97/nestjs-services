@@ -8,7 +8,10 @@ export const config = {
   logDir: process.env.LOG_DIR || 'logs',
   store: process.env.CACHE_DRIVER || 'redis',
   consoleLogLevel: process.env.CONSOLE_LOG_LEVEL || 'log,error,warn',
-  fileLogLevel: process.env.FILE_LOG_LEVEL || 'error,warn', 
+  fileLogLevel: process.env.FILE_LOG_LEVEL || 'error,warn',
+  authGrpc: process.env.AUTH_GRPC_URL || '0.0.0.0:8001',
+  orderGrpc: process.env.ORDER_GRPC_URL || '0.0.0.0:8002',
+  productGrpc: process.env.PRODUCT_GRPC_URL || '0.0.0.0:8003',
   redis: {
     host: process.env.REDIS_HOST || 'localhost',
     port: process.env.REDIS_PORT || 6379,
@@ -18,7 +21,6 @@ export const config = {
     ttl: process.env.REDIS_TTL || 100 /*seconds*/,
     tls: process.env.REDIS_TLS === 'true',
   },
-  
   apiUrl: process.env.API_URL || 'https://huttons-api-gateway-dev.azure-api.net',
   hmsUrl: process.env.HMS_URL || 'https://huttons-hms-dev.redoc.co',
   portalUrl: process.env.PORTAL_URL || 'https://huttons-portal-dev.redoc.co',

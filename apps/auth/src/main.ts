@@ -1,10 +1,11 @@
 import { Transport } from '@nestjs/microservices';
 import { AuthModule } from './app.module';
 import { bootstrap } from '@libs/shared/microservices/start';
-import { protobufPackage } from './proto/auth.pb';
 import { join } from 'path';
+import { AUTH_PACKAGE_NAME, protobufPackage } from '@libs/shared/grpc/auth/auth.pb';
 
 const grpc = {
+  name: AUTH_PACKAGE_NAME,
   transport: Transport.GRPC,
   options: {
     port: process.env.GRPC_PORT,

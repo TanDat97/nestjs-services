@@ -23,9 +23,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "migrate:create": "typeorm migration:create",
     "proto:install": "npm install https://github.com/TanDat97/grpc-nestjs-proto",
-    "proto:auth": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/grpc-nestjs-proto/proto --ts_proto_out=apps/auth/src/proto node_modules/grpc-nestjs-proto/proto/auth.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
-    "proto:order": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/grpc-nestjs-proto/proto --ts_proto_out=apps/order/src/proto node_modules/grpc-nestjs-proto/proto/order.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
-    "proto:product": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/grpc-nestjs-proto/proto --ts_proto_out=apps/product/src/proto node_modules/grpc-nestjs-proto/proto/product.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
+    "proto:auth": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/grpc-nestjs-proto/proto --ts_proto_out=libs/shared/src/grpc/auth node_modules/grpc-nestjs-proto/proto/auth.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
+    "proto:order": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/grpc-nestjs-proto/proto --ts_proto_out=libs/shared/src/grpc/order node_modules/grpc-nestjs-proto/proto/order.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
+    "proto:product": "protoc --plugin=node_modules/.bin/protoc-gen-ts_proto -I=./node_modules/grpc-nestjs-proto/proto --ts_proto_out=libs/shared/src/grpc/product node_modules/grpc-nestjs-proto/proto/product.proto --ts_proto_opt=nestJs=true --ts_proto_opt=fileSuffix=.pb",
     "proto:all": "npm run proto:auth && npm run proto:order && npm run proto:product"
   },
   "dependencies": {
