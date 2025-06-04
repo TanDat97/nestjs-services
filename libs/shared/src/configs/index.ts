@@ -12,6 +12,7 @@ export const config = {
   authGrpc: process.env.AUTH_GRPC_URL || '0.0.0.0:8001',
   orderGrpc: process.env.ORDER_GRPC_URL || '0.0.0.0:8002',
   productGrpc: process.env.PRODUCT_GRPC_URL || '0.0.0.0:8003',
+  sentryDsn: process.env.SENTRY_DSN,
   redis: {
     host: process.env.REDIS_HOST || 'localhost',
     port: process.env.REDIS_PORT || 6379,
