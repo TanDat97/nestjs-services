@@ -48,7 +48,7 @@ export class AllToHttpExceptionsFilter implements ExceptionFilter {
       try {
         Sentry.captureException(exception);
       } catch (e) {
-        this.logger.warn('Sentry is not available, error not captured');
+        this.logger.warn(`Sentry is not available, error not captured: ${JSON.stringify(exception)}`);
       }
     }
 
@@ -104,7 +104,7 @@ export class AllToHttpExceptionsFilter implements ExceptionFilter {
       try {
         Sentry.captureException(error);
       } catch (e) {
-        this.logger.warn('Sentry is not available, error not captured');
+        this.logger.warn(`Sentry is not available, error not captured: ${JSON.stringify(error)}`);
       }
     }
 
